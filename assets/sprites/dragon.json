@@ -1,0 +1,60 @@
+{"frames": [
+
+{
+	"filename": "1",
+	"frame": {"x":1,"y":1,"w":233,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":233,"h":188},
+	"sourceSize": {"w":233,"h":188}
+},
+{
+	"filename": "2",
+	"frame": {"x":235,"y":1,"w":233,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":233,"h":188},
+	"sourceSize": {"w":233,"h":188}
+},
+{
+	"filename": "3",
+	"frame": {"x":1,"y":190,"w":233,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":233,"h":188},
+	"sourceSize": {"w":233,"h":188}
+},
+{
+	"filename": "4",
+	"frame": {"x":235,"y":190,"w":233,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":233,"h":188},
+	"sourceSize": {"w":233,"h":188}
+},
+{
+	"filename": "5",
+	"frame": {"x":1,"y":379,"w":233,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":233,"h":188},
+	"sourceSize": {"w":233,"h":188}
+},
+{
+	"filename": "6",
+	"frame": {"x":235,"y":379,"w":233,"h":188},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":233,"h":188},
+	"sourceSize": {"w":233,"h":188}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "dragon.png",
+	"format": "RGBA8888",
+	"size": {"w":469,"h":568},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:1c2b6786ee77397a1563ac02707826fa:3b817ca867cf95e588c077baec9ef4f8:581e962efa07d1f36d42214f5f5ec489$"
+}
+}
