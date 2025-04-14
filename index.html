@@ -16,6 +16,20 @@
 				height: 100%;
 				display: block;
 			}
+			#fullscreen-btn{
+				position: fixed;
+				bottom: 10px;
+				right: 10px;
+				z-index: 1000;
+				padding: 10px 20px;
+				font-size: 16px;
+				background-color: #007bff;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				display: none; /* Кнопка будет отображаться только на мобильных устройствах */
+			}
 		</style>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,21 +38,16 @@
 			rel="stylesheet">
 	</head>
 	<body>
-		<button id="fullscreen-btn" style="
-			position: fixed;
-			bottom: 10px;
-			right: 10px;
-			z-index: 1000;
-			padding: 10px 20px;
-			font-size: 16px;
-			background-color: #007bff;
-			color: white;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-			display: none; /* Кнопка будет отображаться только на мобильных устройствах */
-		">
-			Полный экран
+		<button id="fullscreen-btn" style="display: none;">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+				height="24" fill="white">
+				<rect x="2" y="2" width="20" height="20" fill="none" stroke="white"
+					stroke-width="2"></rect>
+				<path d="M8 8 L4 4 M16 8 L20 4 M8 16 L4 20 M16 16 L20 20" stroke="white"
+					stroke-width="2" fill="none"></path>
+				<path d="M8 8 L4 4 M16 8 L20 4 M8 16 L4 20 M16 16 L20 20" stroke="white"
+					stroke-width="2" fill="none"></path>
+			</svg>
 		</button>
 
 		<script src="assets/scripts/phaser.min.js"></script>
