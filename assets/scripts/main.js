@@ -24,6 +24,12 @@ let config = {
 let game = new Phaser.Game(config);
 window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
+
+    // Обновляем фон при изменении размера экрана
+    const currentScene = game.scene.getScene(game.scene.keys[game.scene.current]);
+    if (currentScene && currentScene.bg) {
+        currentScene.bg.setSize(window.innerWidth, window.innerHeight);
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
