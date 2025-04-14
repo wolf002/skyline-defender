@@ -18,12 +18,15 @@ class GameScene extends Phaser.Scene{
 		this.enemies = new Enemies(this);
 		this.createCompleteEvents();
 		this.addOverlap();
+
+		// Добавляем обработчик события resize
+		//this.scale.on('resize', this.resize, this);
+
+		// Вызываем resize сразу, чтобы применить начальные размеры
+		//this.resize(this.scale.gameSize);
 	}
-	createBackground(){
+	createBackground() {
 		this.bg = this.add.tileSprite(0, 0, config.width, config.height, 'bg').setOrigin(0, 0);
-		    // Смещаем изображение ближе к низу
-			const offsetY = config.height - this.bg.height;
-			this.bg.setY(offsetY > 0 ? offsetY : 0); // Устанавливаем смещение, если оно положительное
 	}
 	createSounds(){
 		if (!this.sounds) {
@@ -258,5 +261,18 @@ class GameScene extends Phaser.Scene{
 		return false;
 	  }
 	  
-	  
+	  /*resize(gameSize, baseSize, displaySize, resolution) {
+		const width = gameSize.width;
+		const height = gameSize.height;
+	
+		 // Масштабируем фон, чтобы он заполнил весь экран
+		this.bg.setDisplaySize(width, height);
+	
+		// Обновляем позицию и размеры игрока
+		this.player.setPosition(width / 2, height / 2);
+	
+		// Обновляем позицию текста
+		this.textScore.setPosition(20, 20);
+	}*/
+	
 }

@@ -30,16 +30,18 @@ class StartScene extends Phaser.Scene{
 		this.textScore = this.add.text(config.width / 2, config.height / 2 - 20, textScore, textStyle).setOrigin(0.5);
 	}
 	createBackground(){
-		this.add.image(0, 0, 'background').setOrigin(0, 0);
 		const background = this.add.image(0, 0, 'background').setOrigin(0, 0);
 
+		// Масштабируем фон, чтобы он соответствовал ширине экрана
+		background.setDisplaySize(config.width, background.height * (config.width / background.width));
+
 		// Смещаем изображение ближе к низу
-		const offsetY = config.height - background.height;
+		const offsetY = config.height - background.displayHeight;
 		background.setY(offsetY > 0 ? offsetY : 0); // Устанавливаем смещение, если оно положительное
 	}
-	createText (color = 'black') {
-		this.text = this.add.text(config.width / 2, config.height / 2, 'Tab to Start', 
-			{ fontSize: '46px', fontFamily: 'Lato', fontStyle: 'bold', fill: color }).setOrigin(0.5, -1);
+	createText(color = 'black') {
+		this.text = this.add.text(config.width / 2, config.height / 2 + 100, 'Tab to Start', 
+			{ fontSize: '46px', fontFamily: 'Lato', fontStyle: 'bold', fill: color }).setOrigin(0.5, 0.5);
 		this.text.setInteractive();
 		this.text.on('pointerdown', this.onTextClick, this);
 	}
