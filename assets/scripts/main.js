@@ -25,3 +25,24 @@ let game = new Phaser.Game(config);
 window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    const canvas = document.querySelector('canvas');
+
+    // Показываем кнопку только на мобильных устройствах
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        fullscreenBtn.style.display = 'block';
+    }
+
+    // Обработчик для кнопки
+    fullscreenBtn.addEventListener('click', () => {
+        if (canvas.requestFullscreen) {
+            canvas.requestFullscreen();
+        } else if (canvas.webkitRequestFullscreen) { // Для Safari
+            canvas.webkitRequestFullscreen();
+        } else if (canvas.msRequestFullscreen) { // Для IE/Edge
+            canvas.msRequestFullscreen();
+        }
+    });
+});
