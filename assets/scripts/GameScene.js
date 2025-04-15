@@ -23,8 +23,31 @@ class GameScene extends Phaser.Scene{
 		MoveableObject.updateAllAdaptiveSizes(config.height);
 	}
 	createBackground() {
-		this.bg = this.add.tileSprite(0, 0, config.screenWidth, config.screenHeight, 'bg')
-		.setOrigin(0, 0);
+		// Сохраняем текущую высоту
+		const prevHeight = this.scale.height;
+
+		// Временно устанавливаем высоту на 640
+		this.scale.resize(this.scale.width, config.height);
+
+		// Создаём фон с высотой 1024
+		this.bg = this.add.tileSprite(
+			0,
+			0,
+			this.scale.width,
+			config.height,
+			'bg'
+		).setOrigin(0, 0);
+
+		// Возвращаем исходную высоту
+		this.scale.resize(this.scale.width, prevHeight);
+
+		// Подгоняем фон под актуальную высоту экрана
+		this.bg.setDisplaySize(this.scale.width, this.scale.height);
+	}
+	resizeBackground(width, height) {
+		if (this.bg) {
+			this.bg.setDisplaySize(width, height);
+		}
 	}
 	createSounds(){
 		if (!this.sounds) {

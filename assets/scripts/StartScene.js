@@ -35,15 +35,26 @@ class StartScene extends Phaser.Scene{
 	    this.textTitle = this.add.text(config.screenWidth / 2, boxY + boxHeight * 0.15, textTitle, textStyle).setOrigin(0.5);
 	    this.textScore = this.add.text(config.screenWidth / 2, boxY + boxHeight * 0.5, textScore, textStyle).setOrigin(0.5);
 	}
+
 	createBackground(){
-		const background = this.add.image(0, 0, 'background').setOrigin(0, 0);
-
-		// Масштабируем фон, чтобы он соответствовал ширине экрана
-		background.setDisplaySize(config.screenWidth, background.height * (config.screenWidth / background.width));
-
-		// Смещаем изображение ближе к низу
-		const offsetY = config.screenHeight - background.displayHeight;
-		background.setY(offsetY > 0 ? offsetY : 0); // Устанавливаем смещение, если оно положительное
+		// Сохраняем текущую высоту
+		const prevHeight = this.scale.height;
+		// Временно устанавливаем высоту на config.height
+		this.scale.resize(this.scale.width, config.height);
+	    this.background = this.add.image(0, 0, 'background').setOrigin(0, 0);
+	    // Масштабируем фон, чтобы он соответствовал ширине экрана
+	    this.background.setDisplaySize(config.screenWidth, this.background.height * (config.screenWidth / this.background.width));
+		// Возвращаем исходную высоту
+		this.scale.resize(this.scale.width, prevHeight);
+		// Подгоняем фон под актуальную высоту экрана
+		this.background.setDisplaySize(this.scale.width, this.scale.height);
+	}
+	resizeBackground(width, height) {
+	    if (this.background) {
+	        this.background.setDisplaySize(width, this.background.height * (width / this.background.width));
+	        const offsetY = height - this.background.displayHeight;
+	        this.background.setY(offsetY > 0 ? offsetY : 0);
+	    }
 	}
 	createText(color = 'black') {
 	    // Размер шрифта — 6% от высоты экрана (или блока, если нужно)

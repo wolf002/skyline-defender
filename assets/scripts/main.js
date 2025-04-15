@@ -25,13 +25,18 @@ let config = {
 
 let game = new Phaser.Game(config);
 window.addEventListener('resize', () => {
-    // Используем актуальные размеры canvas через game.scale
-	config.screenWidth = game.scale.width;
-	config.screenHeight = game.scale.height;
+    config.screenWidth = game.scale.width;
+    config.screenHeight = game.scale.height;
     game.scale.resize(config.screenWidth, config.screenHeight);
 
     // Централизованно обновляем размеры всех объектов
-    MoveableObject.updateAllAdaptiveSizes(config.height); // 720 — ваш базовый экран
+    MoveableObject.updateAllAdaptiveSizes(config.height);
+
+    // Масштабируем фон в активной сцене, если есть метод resizeBackground
+    const currentScene = game.scene.getAt(0); // Получаем активную сцену
+    if (currentScene && typeof currentScene.resizeBackground === 'function') {
+        currentScene.resizeBackground(config.screenWidth, config.screenHeight);
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
