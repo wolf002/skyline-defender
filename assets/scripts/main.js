@@ -24,22 +24,21 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
-window.addEventListener('resize', () => {
-    config.screenWidth = game.scale.width;
-    config.screenHeight = game.scale.height;
-    game.scale.resize(config.screenWidth, config.screenHeight);
-
-    // Централизованно обновляем размеры всех объектов
+game.scale.on('resize', (gameSize, baseSize, displaySize, resolution) => {
+    config.screenWidth = gameSize.width;
+    config.screenHeight = gameSize.height;
+    
     MoveableObject.updateAllAdaptiveSizes(config.height);
 
-    // Масштабируем фон в активной сцене, если есть метод resizeBackground
-    const currentScene = game.scene.getAt(0); // Получаем активную сцену
+    /*const currentScene = game.scene.getScenes(true)[0];
     if (currentScene && typeof currentScene.resizeBackground === 'function') {
         currentScene.resizeBackground(config.screenWidth, config.screenHeight);
-    }
+    }*/
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+	config.screenWidth = game.scale.width;
+    config.screenHeight = game.scale.height;
     const fullscreenBtn = document.getElementById('fullscreen-btn');
     const canvas = document.querySelector('canvas');
 
@@ -57,5 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (canvas.msRequestFullscreen) { // Для IE/Edge
             canvas.msRequestFullscreen();
         }
+		window.dispatchEvent(new Event('resize'));
     });
 });

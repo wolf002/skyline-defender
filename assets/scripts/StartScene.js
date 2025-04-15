@@ -49,13 +49,13 @@ class StartScene extends Phaser.Scene{
 		// Подгоняем фон под актуальную высоту экрана
 		this.background.setDisplaySize(this.scale.width, this.scale.height);
 	}
-	resizeBackground(width, height) {
+	/*resizeBackground() {
 	    if (this.background) {
-	        this.background.setDisplaySize(width, this.background.height * (width / this.background.width));
-	        const offsetY = height - this.background.displayHeight;
-	        this.background.setY(offsetY > 0 ? offsetY : 0);
+			console.log('resizeBackground');
+			const data = {};
+	        this.create(data);
 	    }
-	}
+	}*/
 	createText(color = 'black') {
 	    // Размер шрифта — 6% от высоты экрана (или блока, если нужно)
 	    const fontSize = Math.round(config.screenHeight * 0.06);
@@ -64,7 +64,7 @@ class StartScene extends Phaser.Scene{
 	    const boxHeight = config.screenHeight * 0.4;
 	    const boxY = (config.screenHeight - boxHeight) / 2;
 	    const y = boxY + boxHeight * 0.85; // 85% высоты блока
-
+//console.log('screenHeight',config.screenHeight, boxY, boxHeight);
 	    this.text = this.add.text(
 	        config.screenWidth / 2,
 	        y,
