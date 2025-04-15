@@ -30,10 +30,10 @@ game.scale.on('resize', (gameSize, baseSize, displaySize, resolution) => {
     
     MoveableObject.updateAllAdaptiveSizes(config.height);
 
-    /*const currentScene = game.scene.getScenes(true)[0];
+    const currentScene = game.scene.getScenes(true)[0];
     if (currentScene && typeof currentScene.resizeBackground === 'function') {
         currentScene.resizeBackground(config.screenWidth, config.screenHeight);
-    }*/
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {

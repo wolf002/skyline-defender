@@ -49,13 +49,11 @@ class StartScene extends Phaser.Scene{
 		// Подгоняем фон под актуальную высоту экрана
 		this.background.setDisplaySize(this.scale.width, this.scale.height);
 	}
-	/*resizeBackground() {
-	    if (this.background) {
-			console.log('resizeBackground');
-			const data = {};
-	        this.create(data);
-	    }
-	}*/
+	resizeBackground(width, height) {
+		if (this.background) {
+			this.background.setDisplaySize(width, height);
+		}
+	}
 	createText(color = 'black') {
 	    // Размер шрифта — 6% от высоты экрана (или блока, если нужно)
 	    const fontSize = Math.round(config.screenHeight * 0.06);
