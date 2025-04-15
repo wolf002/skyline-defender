@@ -1,7 +1,8 @@
 class Enemy extends MoveableObject {
 	static genarateAttributes() {
 		const x = config.width + 256;
-		const y = Phaser.Math.Between(100, config.height - 100);
+		const margin = Math.round(config.screenHeight * 0.1); // 10% от высоты экрана
+		const y = Phaser.Math.Between(margin, config.screenHeight - margin);
 		const frame = `enemy${Phaser.Math.Between(1, 4)}`;
 		return { x, y, frame };
 	}

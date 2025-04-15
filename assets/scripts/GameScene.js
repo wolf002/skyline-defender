@@ -19,14 +19,12 @@ class GameScene extends Phaser.Scene{
 		this.createCompleteEvents();
 		this.addOverlap();
 
-		// Добавляем обработчик события resize
-		//this.scale.on('resize', this.resize, this);
-
-		// Вызываем resize сразу, чтобы применить начальные размеры
-		//this.resize(this.scale.gameSize);
+		 // Централизованно обновляем размеры всех объектов при старте
+		MoveableObject.updateAllAdaptiveSizes(config.height);
 	}
 	createBackground() {
-		this.bg = this.add.tileSprite(0, 0, config.width, config.height, 'bg').setOrigin(0, 0);
+		this.bg = this.add.tileSprite(0, 0, config.screenWidth, config.screenHeight, 'bg')
+		.setOrigin(0, 0);
 	}
 	createSounds(){
 		if (!this.sounds) {
