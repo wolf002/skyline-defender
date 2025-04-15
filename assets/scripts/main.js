@@ -56,6 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (canvas.msRequestFullscreen) { // Для IE/Edge
             canvas.msRequestFullscreen();
         }
-		window.dispatchEvent(new Event('resize'));
+		game.scale.resize(game.scale.width, game.scale.height);
     });
 });
