@@ -62,9 +62,29 @@ class GameScene extends Phaser.Scene{
 
 		this.sounds.theme.play();  // Воспроизводим музыку
 	}
-	createText(){
-		this.textScore = this.add.text(20, 20, 'Score: ' + this.score, 
-			{ fontSize: '46px', fontFamily: 'Lato', fontStyle: 'bold', fill: 'black' });
+	createText() {
+		// Размер шрифта — 5% от высоты экрана
+		const fontSize = Math.round(this.scale.height * 0.05);
+
+		// Минимальный фиксированный отступ
+		const marginX = 10;
+		const marginY = 10;
+
+		// Используем реальные размеры canvas
+		const x = this.cameras.main.worldView.x + marginX;
+		const y = this.cameras.main.worldView.y + marginY;
+
+		this.textScore = this.add.text(
+			x,
+			y,
+			'Score: ' + this.score,
+			{
+				fontSize: fontSize + 'px',
+				fontFamily: 'Lato',
+				fontStyle: 'bold',
+				fill: 'black'
+			}
+		).setOrigin(0, 0);
 	}
 	createCompleteEvents(){
 		this.player.once('killed', this.onComplete, this);

@@ -23,9 +23,19 @@ let config = {
     }	
 };
 
+if (window.innerHeight > window.innerWidth) {
+	config.scale.mode = Phaser.Scale.WIDTH_CONTROLS_HEIGHT; // Изменяем режим масштабирования для мобильных устройств
+}else {
+	config.scale.mode = Phaser.Scale.RESIZE; // Изменяем режим масштабирования 
+}
 let game = new Phaser.Game(config);
 game.scale.on('resize', (gameSize, baseSize, displaySize, resolution) => {
-    config.screenWidth = gameSize.width;
+    if (game.scale.height > game.scale.width) {
+		game.scale.scaleMode = Phaser.Scale.WIDTH_CONTROLS_HEIGHT;
+	} else {
+		game.scale.scaleMode = Phaser.Scale.RESIZE;
+	}
+	config.screenWidth = gameSize.width;
     config.screenHeight = gameSize.height;
 
     // Обновляем размеры всех объектов
