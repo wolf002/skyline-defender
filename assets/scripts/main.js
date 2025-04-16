@@ -30,11 +30,6 @@ if (window.innerHeight > window.innerWidth) {
 }
 let game = new Phaser.Game(config);
 game.scale.on('resize', (gameSize, baseSize, displaySize, resolution) => {
-    if (game.scale.height > game.scale.width) {
-		game.scale.scaleMode = Phaser.Scale.WIDTH_CONTROLS_HEIGHT;
-	} else {
-		game.scale.scaleMode = Phaser.Scale.RESIZE;
-	}
 	config.screenWidth = gameSize.width;
     config.screenHeight = gameSize.height;
 
