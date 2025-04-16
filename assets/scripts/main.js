@@ -18,7 +18,7 @@ let config = {
         }
     },
     scale: {
-        mode: Phaser.Scale.RESIZE, // Масштабируем игру, чтобы она вписывалась в экран
+        mode: Phaser.Scale.WIDTH_CONTROLS_HEIGHT, // Масштабируем игру, чтобы она вписывалась в экран
         autoCenter: Phaser.Scale.CENTER_BOTH // Центрируем игру по горизонтали и вертикали
     }	
 };
@@ -27,9 +27,11 @@ let game = new Phaser.Game(config);
 game.scale.on('resize', (gameSize, baseSize, displaySize, resolution) => {
     config.screenWidth = gameSize.width;
     config.screenHeight = gameSize.height;
-    
+
+    // Обновляем размеры всех объектов
     MoveableObject.updateAllAdaptiveSizes(config.height);
 
+    // Вызываем resizeBackground у текущей сцены
     const currentScene = game.scene.getScenes(true)[0];
     if (currentScene && typeof currentScene.resizeBackground === 'function') {
         currentScene.resizeBackground(config.screenWidth, config.screenHeight);
@@ -58,4 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 		game.scale.resize(game.scale.width, game.scale.height);
     });
+});
+
+document.addEventListener('fullscreenchange', () => {
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (document.fullscreenElement) {
+        fullscreenBtn.style.display = 'none';
+    } else {
+        // Показываем кнопку только на мобильных устройствах
+        if (/Mobi|Android/i.test(navigator.userAgent)) {
+            fullscreenBtn.style.display = 'block';
+        }
+    }
 });
